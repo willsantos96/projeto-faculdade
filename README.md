@@ -10,12 +10,12 @@ Certifique-se de ter o Python e o Django instalados em sua máquina.
 
 No Windows:
 
-python -m venv virtual-env
+python -m venv virtual-env  
 virtual-env\Scripts\activate.bat
 
 No Linux:
 
-python -m venv virtual-env
+python -m venv virtual-env  
 . venv/bin/activate
 
 
