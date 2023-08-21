@@ -5,7 +5,11 @@
 
 <head>
 
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <!-- código para exportar o css -->
+    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+
+    <!-- código para exportar bootstrap -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}"> 
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
 
@@ -19,7 +23,48 @@
 
 <body>
 
-    <h1>Página de cadastro</h1>
+    <h1>Cadastrar Cliente</h1>
+    <form method="post">
+      {% csrf_token %}
+      
+      <!-- Nome -->
+      <div class="form-group">
+        {{ form.nome.label_tag }}
+        {{ form.nome }}
+      </div>
+      
+      <!-- Email -->
+      <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+      </div>
+  
+      <!-- Sexo -->
+      <div class="form-group">
+        {{ form.sexo.label_tag }}
+        {{ form.sexo }}
+      </div>
+      
+      <!-- Data de Nascimento -->
+      <div class="form-group">
+        {{ form.data_nascimento.label_tag }}
+        {{ form.data_nascimento }}
+      </div>
+      
+      <!-- CPF -->
+      <div class="form-group">
+        {{ form.cpf.label_tag }}
+        {{ form.cpf }}
+      </div>
+      
+      <!-- Telefone -->
+      <div class="form-group">
+        {{ form.telefone.label_tag }}
+        {{ form.telefone }}
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
     
 </body>
 

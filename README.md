@@ -8,12 +8,12 @@ Certifique-se de ter o Python e o Django instalados em sua máquina.
 
 # Instale um ambiente virtual para evitar que o projeto seja instalado global em sua máquina.
 
-No Windows:
+Em Windows:
 
 python -m venv virtual-env  
 virtual-env\Scripts\activate.bat
 
-No Linux:
+Em Linux:
 
 python -m venv virtual-env  
 . venv/bin/activate
