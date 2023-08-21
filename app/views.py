@@ -20,7 +20,7 @@ def cadastrar_cliente(request):
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('pagina_de_sucesso')  # Redirecione para uma página de sucesso
+            return redirect(cadastrar_cliente) # Redirecione para uma página de sucesso
     else:
         form = ClienteForm()
     
