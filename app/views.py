@@ -29,4 +29,4 @@ def cadastrar_cliente(request):
 
 def lista_clientes(request):
     clientes = Cliente.objects.all()
-    return render(request, 'formulario.html', {'clientes': clientes})
+    return render(request, 'lista.html', {'clientes': clientes})
