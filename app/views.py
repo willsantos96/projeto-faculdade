@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ClienteForm
+from .models import Cliente
 
 
 def home (request):
@@ -25,3 +26,7 @@ def cadastrar_cliente(request):
         form = ClienteForm()
     
     return render(request, 'adicionar.html', {'form': form})
+
+def lista_clientes(request):
+    clientes = Cliente.objects.all()
+    return render(request, 'formulario.html', {'clientes': clientes})

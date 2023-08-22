@@ -23,8 +23,15 @@
 
 <body>
 
-    <h1>Página de cadastramento</h1>
-    
+    <h1>Lista de Clientes</h1>
+
+    {% for cliente in clientes %}
+        <p>Nome: {{ cliente.nome }}</p>
+        <p>Email: {{ cliente.email }}</p>
+    <!-- Outras informações do cliente -->
+    {% endfor %}
+
+
 </body>
 
 
