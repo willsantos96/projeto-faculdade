@@ -27,18 +27,12 @@
 
     {% for cliente in clientes %}
         <h5>Nome: {{ cliente.nome }}</h5>
-        <h5>Email: {{ cliente.email }}<h5>
-        <h5>Sexo: {{ cliente.sexo }}<h5>
-        <h5>Data de nascimento: {{ cliente.data_nascimento }}<h5>
-        <h5>CPF: {{ cliente.cpf }}<h5>
-        <h5>Telefone: {{ cliente.telefone }}<h5>
         <a href="{% url 'editar_cliente' cliente.id %}">Editar cliente</a>
         <hr>
-
-
-
-    <!-- Outras informações do cliente -->
     {% endfor %}
+
+
+<a href="{% url 'home' %}">Página inicial</a>
 
 
 </body>
