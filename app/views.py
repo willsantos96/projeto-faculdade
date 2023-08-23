@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ClienteForm
 from .models import Cliente
 
@@ -30,3 +30,21 @@ def cadastrar_cliente(request):
 def lista_clientes(request):
     clientes = Cliente.objects.all()
     return render(request, 'lista.html', {'clientes': clientes})
+
+def selecionar_cliente(request):
+    clientes = Cliente.objects.all()
+    return render(request, 'selecionar.html', {'clientes': clientes})
+
+
+def editar_cliente(request, pk):
+    cliente = get_object_or_404(Cliente, pk=pk)
+
+    if request.method == 'POST':
+        form = ClienteForm(request.POST, instance=cliente)
+        if form.is_valid():
+            form.save()
+            return redirect('lista_clientes')  # Redirecione para uma página de sucesso
+    else:
+        form = ClienteForm(instance=cliente)
+    
+    return render(request, 'editar.html', {'form': form})

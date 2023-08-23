@@ -16,18 +16,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Página inicial</title>
+    <title>Editar Cliente</title>
 </head>
+
 
 
 <body>
 
-    <h1>Página inicial</h1>
-
-    <a href="{% url 'cadastrar_cliente' %}">Adicionar Cliente</a> <br>
-    <a href="{% url 'lista_clientes' %}">Listar Clientes</a> <br>
-    <a href="{% url 'selecionar_cliente' %}">Editar Clientes</a>
+  <form method="post">
+    {% csrf_token %}
     
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+  </form>
+
+
 </body>
 
 
