@@ -34,7 +34,18 @@
   <h5>Data de nascimento: {{ cliente.data_nascimento }}<h5>
   <h5>CPF: {{ cliente.cpf }}<h5>
   <h5>Telefone: {{ cliente.telefone }}<h5>
-  <a href="{% url 'editar_cliente' cliente.id %}">Editar cliente</a>
+
+  <form method="" action="{% url 'editar_cliente' cliente.id %}" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary btn-sm">Editar</button>
+  </form>
+
+    <form method="post" action="{% url 'excluir_cliente' cliente.id %}" style="display: inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+    </form>
+    <hr>
+
   <hr>
 {% endfor %}
 
