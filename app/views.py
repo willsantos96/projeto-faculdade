@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ClienteForm
-from .models import Cliente
+from .forms import AlunoForm
+from .models import Aluno
 
 
 def home (request):
@@ -18,41 +18,42 @@ def formulario (request):
 
 def cadastrar_cliente(request):
     if request.method == 'POST':
-        form = ClienteForm(request.POST)
+        form = AlunoForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('selecionar_cliente') # Redirecione para uma página de sucesso
     else:
-        form = ClienteForm()
+        form = AlunoForm()
     
-    return render(request, 'adicionar.html', {'form': form})
+    context = {'form': form}
+    return render(request, 'adicionar.html', context)
 
 def selecionar_cliente(request):
-    clientes = Cliente.objects.all()
-    return render(request, 'selecionar.html', {'clientes': clientes})
+    alunos = Aluno.objects.all()
+    return render(request, 'selecionar.html', {'alunos': alunos})
 
 
 def editar_cliente(request, pk):
-    cliente = get_object_or_404(Cliente, pk=pk)
+    aluno = get_object_or_404(Aluno, pk=pk)
 
     if request.method == 'POST':
-        form = ClienteForm(request.POST, instance=cliente)
+        form = AlunoForm(request.POST, instance=aluno)
         if form.is_valid():
             form.save()
             return redirect('selecionar_cliente')  # Redirecione para uma página de sucesso
     else:
-        form = ClienteForm(instance=cliente)
+        form = AlunoForm(instance=aluno)
     
     return render(request, 'editar.html', {'form': form})
 
 def selecionar_cliente(request):
-    clientes = Cliente.objects.all()
-    return render(request, 'selecionar.html', {'clientes': clientes})
+    alunos = Aluno.objects.all()
+    return render(request, 'selecionar.html', {'alunos': alunos})
 
 def excluir_cliente(request, pk):
-    cliente = get_object_or_404(Cliente, pk=pk)
+    aluno = get_object_or_404(Aluno, pk=pk)
     if request.method == 'POST':
-        cliente.delete()
+        aluno.delete()
         return redirect('selecionar_cliente')
     
     

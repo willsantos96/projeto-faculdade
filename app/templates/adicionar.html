@@ -5,12 +5,14 @@
 
 <head>
 
-    <!-- código para exportar o css -->
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+    <!-- código para usar o css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <!-- código para exportar bootstrap -->
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}"> 
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    
 
 
     <meta charset="UTF-8">
@@ -23,48 +25,191 @@
 
 <body>
 
-    <h1>Cadastrar Cliente</h1>
-    <form method="post">
-      {% csrf_token %}
-      
-      <!-- Nome -->
-      <div class="form-group">
-        {{ form.nome.label_tag }}
-        {{ form.nome }}
-      </div>
-      
-      <!-- Email -->
-      <div class="form-group">
-        {{ form.email.label_tag }}
-        {{ form.email }}
-      </div>
   
-      <!-- Sexo -->
-      <div class="form-group">
-        {{ form.sexo.label_tag }}
-        {{ form.sexo }}
-      </div>
-      
-      <!-- Data de Nascimento -->
-      <div class="form-group">
-        {{ form.data_nascimento.label_tag }}
-        {{ form.data_nascimento }}
-      </div>
-      
-      <!-- CPF -->
-      <div class="form-group">
-        {{ form.cpf.label_tag }}
-        {{ form.cpf }}
-      </div>
-      
-      <!-- Telefone -->
-      <div class="form-group">
-        {{ form.telefone.label_tag }}
-        {{ form.telefone }}
-      </div>
   
-      <button type="submit" class="btn btn-primary">Salvar</button>
-    </form>
+
+
+
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-lg rounded-lg">
+                <div class="card-header bg-gradient-primary text-white text-center py-3">
+                    <h1 class="m-0 dark-heading">Cadastrar Aluno</h1>
+                </div>
+                <div class="card-body bg-light rounded-bottom">
+
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="{{ form.nome.id_for_label }}" class="form-label">Nome</label>
+                                {{ form.nome }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="{{ form.sexo.id_for_label }}" class="form-label">Sexo</label>
+                                {{ form.sexo }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.data_nascimento.id_for_label }}" class="form-label">Data de Nascimento</label>
+                                {{ form.data_nascimento }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="{{ form.cpf.id_for_label }}" class="form-label">CPF</label>
+                                {{ form.cpf }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.rg.id_for_label }}" class="form-label">RG</label>
+                                {{ form.rg }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="{{ form.telefone.id_for_label }}" class="form-label">Telefone</label>
+                                {{ form.telefone }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.endereco.id_for_label }}" class="form-label">Endereço</label>
+                                {{ form.endereco }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-3">
+                                <label for="{{ form.numero.id_for_label }}" class="form-label">Número</label>
+                                {{ form.numero }}
+                            </div>
+                            <div class="col-md-3">
+                                <label for="{{ form.complemento.id_for_label }}" class="form-label">Complemento</label>
+                                {{ form.complemento }}
+                            </div>
+                            <div class="col-md-3">
+                                <label for="{{ form.bairro.id_for_label }}" class="form-label">Bairro</label>
+                                {{ form.bairro }}
+                            </div>
+                            <div class="col-md-3">
+                                <label for="{{ form.cep.id_for_label }}" class="form-label">CEP</label>
+                                {{ form.cep }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="{{ form.cidade.id_for_label }}" class="form-label">Cidade</label>
+                                {{ form.cidade }}
+                            </div>
+                            <div class="col-md-3">
+                                <label for="{{ form.uf.id_for_label }}" class="form-label">UF</label>
+                                {{ form.uf }}
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <h4>Filiação</h4>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="{{ form.nome_mae.id_for_label }}" class="form-label">Nome da Mãe</label>
+                                {{ form.nome_mae }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.nome_pai.id_for_label }}" class="form-label">Nome do Pai</label>
+                                {{ form.nome_pai }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="{{ form.rg_responsavel.id_for_label }}" class="form-label">RG do Responsável</label>
+                                {{ form.rg_responsavel }}
+                            </div>
+                            <div class="col-md-6">
+                                <label for="{{ form.codigo_escola.id_for_label }}" class="form-label">Código da Escola</label>
+                                {{ form.codigo_escola }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.nome_escola.id_for_label }}" class="form-label">Nome da Escola</label>
+                            {{ form.nome_escola }}
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="{{ form.matricula_escolar.id_for_label }}" class="form-label">Matrícula Escolar</label>
+                                {{ form.matricula_escolar }}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="{{ form.nivel_ensino.id_for_label }}" class="form-label">Nível de Ensino</label>
+                                {{ form.nivel_ensino }}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="{{ form.serie.id_for_label }}" class="form-label">Série</label>
+                                {{ form.serie }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="{{ form.codigo_curso.id_for_label }}" class="form-label">Código do Curso</label>
+                            {{ form.codigo_curso }}
+                        </div>
+
+                        <hr>
+
+                        <h4>Linhas Selecionadas</h4>
+                        
+
+                        <div class="row">
+                          {% for field in form %}
+                              {% if 'linha' in field.name %}
+                                  <div class="col-md-12">
+                                      <div class="mb-3">
+                                          <label for="{{ field.id_for_label }}" class="form-label">{{ field.label_tag }}</label>
+                                          <input type="text" name="{{ field.name }}" id="{{ field.id_for_label }}" class="form-control linhas-selecionadas">
+                                      </div>
+                                  </div>
+                              {% endif %}
+                          {% endfor %}
+                      </div>
+
+
+                        <button type="submit" class="btn btn-primary btn-block rounded-pill">Cadastrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <br>
     <a href="{% url 'home' %}">Página inicial</a>
 
