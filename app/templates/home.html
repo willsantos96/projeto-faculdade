@@ -2,33 +2,47 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
+    <head>
+        <!-- código para importar o css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
-<head>
+        <!-- Descomente esse código para usar bootstrap -->
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
-    <!-- código para exportar o css -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Descomente esse código para usar bootstrap -->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <title>Página inicial</title>
+    </head>
 
+    <body class="homeBody">
+        <header>
+            <nav class="navbar">
+                <img class="logo" src="" alt="Logo" />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <ul class="nav-items">
+                    <li class="nav-item">
+                        <a href="#">Escola</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Aluno</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Instruções</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#">Dúvidas</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
 
-    <title>Página inicial</title>
-</head>
+        <main class="content">
+            <div class="setor">Escola</div>
+            <div class="setor">Aluno</div>
+        </main>
 
-
-<body>
-
-    <h1>Página inicial</h1>
-
-    <a href="{% url 'cadastrar_cliente' %}">Adicionar Cliente</a> <br>
-    <a href="{% url 'selecionar_cliente' %}">Editar / Excluir Clientes</a>
-    
-</body>
-
-
-
+        <footer>Copyright</footer>
+    </body>
 </html>
