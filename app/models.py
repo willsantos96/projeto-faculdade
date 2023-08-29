@@ -52,4 +52,6 @@ class Aluno(models.Model):
     linha9 = models.TextField(blank=True)
     linha10 = models.TextField(blank=True)
 
+    def __str__(self):
+            return self.nome
 
