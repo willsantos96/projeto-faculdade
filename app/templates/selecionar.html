@@ -27,20 +27,20 @@
 
 
 
-  {% for cliente in clientes %}
-  <h5>Nome: {{ cliente.nome }}</h5>
-  <h5>Email: {{ cliente.email }}<h5>
-  <h5>Sexo: {{ cliente.sexo }}<h5>
-  <h5>Data de nascimento: {{ cliente.data_nascimento }}<h5>
-  <h5>CPF: {{ cliente.cpf }}<h5>
-  <h5>Telefone: {{ cliente.telefone }}<h5>
+  {% for aluno in alunos %}
+  <h5>Nome: {{ aluno.nome }}</h5>
+  <h5>Email: {{ aluno.email }}<h5>
+  <h5>Sexo: {{ aluno.sexo }}<h5>
+  <h5>Data de nascimento: {{ aluno.data_nascimento }}<h5>
+  <h5>CPF: {{ aluno.cpf }}<h5>
+  <h5>Telefone: {{ aluno.telefone }}<h5>
 
-  <form method="" action="{% url 'editar_cliente' cliente.id %}" style="display: inline;">
+  <form method="" action="{% url 'editar_aluno' aluno.id %}" style="display: inline;">
     {% csrf_token %}
     <button type="submit" class="btn btn-primary btn-sm">Editar</button>
   </form>
 
-    <form method="post" action="{% url 'excluir_cliente' cliente.id %}" style="display: inline;">
+    <form method="post" action="{% url 'excluir_aluno' aluno.id %}" style="display: inline;">
       {% csrf_token %}
       <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
     </form>

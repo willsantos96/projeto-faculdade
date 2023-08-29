@@ -16,24 +16,24 @@ def formulario (request):
     return render(request, 'formulario.html')
 
 
-def cadastrar_cliente(request):
+def cadastrar_aluno(request):
     if request.method == 'POST':
         form = AlunoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('selecionar_cliente') # Redirecione para uma página de sucesso
+            return redirect('selecionar_aluno') # Redirecione para uma página de sucesso
     else:
         form = AlunoForm()
     
     context = {'form': form}
     return render(request, 'adicionar.html', context)
 
-def selecionar_cliente(request):
+def selecionar_aluno(request):
     alunos = Aluno.objects.all()
     return render(request, 'selecionar.html', {'alunos': alunos})
 
 
-def editar_cliente(request, pk):
+def editar_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
 
     if request.method == 'POST':
@@ -46,14 +46,14 @@ def editar_cliente(request, pk):
     
     return render(request, 'editar.html', {'form': form})
 
-def selecionar_cliente(request):
+def selecionar_aluno(request):
     alunos = Aluno.objects.all()
     return render(request, 'selecionar.html', {'alunos': alunos})
 
-def excluir_cliente(request, pk):
+def excluir_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
     if request.method == 'POST':
         aluno.delete()
-        return redirect('selecionar_cliente')
+        return redirect('selecionar_aluno')
     
     
