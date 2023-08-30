@@ -1,5 +1,18 @@
 from django.db import models
 from django import forms
+from django.contrib.auth.hashers import make_password
+
+
+class ContaEscola(models.Model):
+    username = models.CharField(max_length=50, unique=True)
+    password_hash = models.CharField(max_length=128)
+
+    def save(self, *args, **kwargs):
+        self.password_hash = make_password(self.password_hash)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.username
 
 
 class Aluno(models.Model):

@@ -1,5 +1,24 @@
 from django import forms
 from .models import Aluno
+from .models import ContaEscola
+from django.contrib.auth.hashers import make_password
+
+class ContaEscolaForm(forms.ModelForm):
+    class Meta:
+        model = ContaEscola
+        fields = ['username', 'password_hash']
+        widgets = {
+            'password_hash': forms.PasswordInput()
+        }
+
+    def save(self, commit=True):
+        contaescola = super().save(commit=False)
+        contaescola.password_hash = make_password(self.cleaned_data['password_hash'])
+        if commit:
+            contaescola.save()
+        return contaescola
+
+
 
 class AlunoForm(forms.ModelForm):
     class Meta:

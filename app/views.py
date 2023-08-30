@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import AlunoForm
+from .forms import ContaEscolaForm
 from .models import Aluno
 
 
@@ -14,6 +15,19 @@ def adicionar (request):
 def formulario (request):
     # Lógica para renderizar a página de validação
     return render(request, 'formulario.html')
+
+
+def criar_contaescola(request):
+    if request.method == 'POST':
+        form = ContaEscolaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('nome_da_url') # Redirecione para uma página de sucesso
+    else:
+        form = ContaEscolaForm()
+
+    context = {'form': form}
+    return render(request, 'form_escola.html', context)
 
 
 def cadastrar_aluno(request):

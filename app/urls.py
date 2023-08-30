@@ -7,4 +7,5 @@ urlpatterns = [
     path('selecionar/', views.selecionar_aluno, name='selecionar_aluno'),
     path('editar/<int:pk>/', views.editar_aluno, name='editar_aluno'),
     path('excluir/<int:pk>/', views.excluir_aluno, name='excluir_aluno'),
+    path('criar_contaescola/', views.criar_contaescola, name='criar_contaescola'),
 ]
