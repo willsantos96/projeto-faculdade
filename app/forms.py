@@ -19,8 +19,11 @@ class ContaEscolaForm(forms.ModelForm):
         return contaescola
 
 
-
 class AlunoForm(forms.ModelForm):
     class Meta:
         model = Aluno
         fields = '__all__'
+
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=50)
+    password = forms.CharField(widget=forms.PasswordInput())
