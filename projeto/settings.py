@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'projeto.urls'
@@ -103,9 +104,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 #   Autenticação login escola
 AUTHENTICATION_BACKENDS = [
-    'app.authentication.ContaEscolaBackend',
+    'app.auth_backends.ContaEscolaBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+AUTH_USER_MODEL = 'app.ContaEscola'
 
 
 

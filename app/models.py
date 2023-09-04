@@ -1,20 +1,41 @@
 from django.db import models
-from django import forms
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import check_password as check_password_hash
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
 
 
-class ContaEscola(models.Model):
+class ContaEscolaManager(BaseUserManager):
+    def create_user(self, username, password=None, **extra_fields):
+        if not username:
+            raise ValueError('O campo username é obrigatório.')
+        user = self.model(username=username, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, username, password, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        return self.create_user(username, password, **extra_fields)
+
+class ContaEscola(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=50, unique=True)
-    password_hash = models.CharField(max_length=128)
+    password = models.CharField(max_length=128) 
 
-    def save(self, *args, **kwargs):
-        self.password_hash = make_password(self.password_hash)
-        super().save(*args, **kwargs)
+    # Adicione related_name para evitar conflitos
+    groups = models.ManyToManyField(Group, blank=True, related_name='contaescola_user_set')
+    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='contaescola_user_set')
+    is_staff = models.BooleanField(default=False)
+
+    objects = ContaEscolaManager()
+
+
+    USERNAME_FIELD = 'username'
 
     def __str__(self):
         return self.username
-
-
+    
+    
 class Aluno(models.Model):
     SEXO_CHOICES = [
         ('M', 'Masculino'),

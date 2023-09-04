@@ -1,46 +1,53 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import login, authenticate
 from .forms import AlunoForm
 from .forms import ContaEscolaForm
 from .models import Aluno
-import logging
+from django.contrib.auth import authenticate, login
+from .forms import LoginForm
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+
+
 
 
 def home (request):
     # Lógica para renderizar a página home
     return render(request, 'home.html')
 
-def login_escola (request):
-    # Lógica para renderizar a página de login da escola
-    return render(request, 'login_escola.html')
-
 def formulario (request):
     # Lógica para renderizar a página de validação
     return render(request, 'formulario.html')
 
-
+@csrf_protect
 def login_escola(request):
-    logger = logging.getLogger(__name__)  # Configurar o logger
-
     if request.method == 'POST':
-        form = ContaEscolaForm(request.POST)
+        form = LoginForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
-            password = form.cleaned_data['password'] 
+            password = form.cleaned_data['password']
+
             user = authenticate(request, username=username, password=password)
+
             if user is not None:
                 login(request, user)
-                logger.info("Usuário autenticado com sucesso: %s", username)
+                # Redirecione para a página de sucesso ou qualquer outra página desejada
                 return redirect('cadastrar_aluno')
             else:
-                logger.warning("Falha na autenticação para o usuário: %s", username)
+                # Autenticação falhou, exiba uma mensagem de erro no template
+                return render(request, 'login_escola.html', {'form': form, 'error_message': 'Credenciais inválidas'})
     else:
-        form = ContaEscolaForm()
+        form = LoginForm()
+
+    return render(request, 'login_escola.html', {'form': form})
+
+
+def fazer_logout(request):
+    logout(request)
+    return redirect('login_escola')
+
     
-    context = {'form': form}
-    return render(request, 'login_escola.html', context)
-
-
+@csrf_protect
 def criar_contaescola(request):
     if request.method == 'POST':
         form = ContaEscolaForm(request.POST)
@@ -54,6 +61,7 @@ def criar_contaescola(request):
     return render(request, 'form_escola.html', context)
 
 
+@login_required(login_url='/login_escola/')
 def cadastrar_aluno(request):
     if request.method == 'POST':
         form = AlunoForm(request.POST)

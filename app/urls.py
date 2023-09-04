@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views  # Importe as funções de visualização da sua aplicação
+from django.urls import path
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('', views.home, name='home'),  # URL para a página home
@@ -9,4 +11,5 @@ urlpatterns = [
     path('excluir/<int:pk>/', views.excluir_aluno, name='excluir_aluno'),
     path('criar_contaescola/', views.criar_contaescola, name='criar_contaescola'),
     path('login_escola/', views.login_escola, name='login_escola'),
+    path('logout/', views.fazer_logout, name='logout'),
 ]
