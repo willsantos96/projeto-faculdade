@@ -24,5 +24,5 @@ pip install django
 # Instale as dependências do projeto (recomenda-se usar um ambiente virtual)
 pip install -r requirements.txt
 
-# Faça a migração do banco de dados
-python manage.py migrate
+# Inicie o servidor
+python manage.py runserver
