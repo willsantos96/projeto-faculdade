@@ -25,7 +25,7 @@ pip install django
 pip install -r requirements.txt
 
 # Faça as migrações necessárias
-python manage.py migrate app
+python manage.py migrate app  
 python manage.py migrate
 
 # Inicie o servidor
