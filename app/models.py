@@ -1,6 +1,4 @@
 from django.db import models
-from django.contrib.auth.hashers import make_password
-from django.contrib.auth.hashers import check_password as check_password_hash
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
 
 

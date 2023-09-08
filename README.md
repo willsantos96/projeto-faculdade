@@ -5,9 +5,7 @@ Bem-vindo ao Meu Projeto Django! Este é um projeto inicial para começar a dese
 # Configuração do Ambiente
 Certifique-se de ter o Python e o Django instalados em sua máquina.
 
-
 # Instale um ambiente virtual para evitar que o projeto seja instalado global em sua máquina.
-
 Em Windows:
 
 python -m venv virtual-env  
@@ -18,6 +16,8 @@ Em Linux:
 python -m venv virtual-env  
 . venv/bin/activate
 
-
 # Instale as dependências do projeto (recomenda-se usar um ambiente virtual)
 pip install -r requirements.txt
+
+# Faça a migração do banco de dados
+python manage.py migrate
