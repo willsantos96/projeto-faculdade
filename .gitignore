@@ -2,6 +2,7 @@
 *.ini
 *.conf
 *.env
+.db.sqlite3
 
 # Arquivos gerados automaticamente
 __pycache__/
