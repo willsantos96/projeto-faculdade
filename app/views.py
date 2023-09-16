@@ -100,4 +100,5 @@ def excluir_aluno(request, pk):
         aluno.delete()
         return redirect('selecionar_aluno')
     
-    
+def area_aluno(request):
+    return render(request, 'area_aluno.html')

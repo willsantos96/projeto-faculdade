@@ -12,4 +12,6 @@ urlpatterns = [
     path('criar_contaescola/', views.criar_contaescola, name='criar_contaescola'),
     path('login_escola/', views.login_escola, name='login_escola'),
     path('logout/', views.fazer_logout, name='logout'),
+
+    path('area_aluno/', views.area_aluno, name='area_aluno'),
 ]

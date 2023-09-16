@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <!-- código para importar o css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <!-- Descomente esse código para usar bootstrap -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login</title>
+</head>
+
+<header>
+    <nav class="navbar">
+        <img class="logo" src="" alt="Logo" />
+
+        <ul class="nav-items">
+            <li class="nav-item">
+                <a href="{% url 'home' %}">Home</a>
+        </ul>   
+    </nav>
+</header>
+
+
+<body class="homeBody">
+
+<main class="content">
+    <div class="d-grid">
+        <a href="#" class="btn btn-secondary">Já estou verificado</a>
+        <a href="#" class="btn btn-secondary">Ainda não estou verificado</a>
+    </div>
+</main>
+
+    
+</body>
+
+</html>

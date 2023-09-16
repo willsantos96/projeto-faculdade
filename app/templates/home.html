@@ -26,7 +26,7 @@
                         <a href="{% url 'cadastrar_aluno' %}">Escola</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#">Aluno</a>
+                        <a href="{% url 'area_aluno' %}">Aluno</a>
                     </li>
                     <li class="nav-item">
                         <a href="#">Instruções</a>
@@ -50,7 +50,7 @@
                 Escolas cadastradas:
                 <hr>
                 {% for contaescola in contaescolas %}
-                <h5>Nome: {{ contaescola.username }}</h5>
+                <h5>{{ contaescola.username }}</h5>
                 {% endfor %}
                 {% endif %}
             </div>
