@@ -39,7 +39,15 @@
         </header>
 
         <main class="content">
-            <div class="setor">Escola</div>
+            <div class="setor">
+                Escolas cadastradas:
+                <hr>
+                {% for contaescola in contaescolas %}
+                <h5>Nome: {{ contaescola.username }}</h5>
+                {% endfor %}
+            </div>
+
+
             <div class="setor">Aluno</div>        
         </main>
 

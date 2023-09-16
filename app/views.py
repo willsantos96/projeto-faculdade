@@ -1,16 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import AlunoForm
 from .forms import ContaEscolaForm
-from .models import Aluno
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from .models import Aluno
+from .models import ContaEscola
 
 def home (request):
-    # Lógica para renderizar a página home
-    return render(request, 'home.html')
+    contaescolas = ContaEscola.objects.all()
+    return render(request, 'home.html', {'contaescolas': contaescolas})
 
 def formulario (request):
     # Lógica para renderizar a página de validação
