@@ -8,6 +8,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .models import Aluno
 from .models import ContaEscola
+from .forms import AcessoAlunoLoginForm
+
 
 def home (request):
     contaescolas = ContaEscola.objects.all()
@@ -102,3 +104,44 @@ def excluir_aluno(request, pk):
     
 def area_aluno(request):
     return render(request, 'area_aluno.html')
+
+
+
+@csrf_protect
+def criar_contaaluno(request):
+    if request.method == 'POST':
+        form = ContaEscolaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login_acesso_aluno') # Redirecione para uma página de sucesso
+    else:
+        form = ContaEscolaForm()
+
+    context = {'form': form}
+    return render(request, 'criar_contaaluno.html', context)
+
+
+@csrf_protect
+def login_acesso_aluno(request):
+    if request.method == 'POST':
+        form = AcessoAlunoLoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                # Redirecione para a página de sucesso ou qualquer outra página desejada
+                return redirect('area_aluno')
+            else:
+                # Autenticação falhou, exiba uma mensagem de erro no template
+                return render(request, 'area_aluno.html', {'form': form, 'error_message': 'Credenciais inválidas'})
+    else:
+        form = LoginForm()
+
+    return render(request, 'area_aluno.html', {'form': form})
+
+
+

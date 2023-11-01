@@ -31,14 +31,49 @@
 
 <body class="homeBody">
 
-<main class="content">
-    <div class="d-grid">
-        <a href="#" class="btn btn-secondary">Já estou verificado</a>
-        <a href="#" class="btn btn-secondary">Ainda não estou verificado</a>
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center dark-heading">Login</h2>
+                    </div>
+                    <div class="card-body">
+
+                        <form method="post">
+                            {% csrf_token %}
+                            {% if error_message %}
+                            <div class="alert alert-danger">
+                                <strong>Erro:</strong> {{ error_message }}
+                            </div>
+                            {% endif %}
+                            <div class="mb-3">
+                                <label for="id_username_acessoaluno" class="form-label">Usuário</label>
+                                <input type="text" id="id_username_acessoaluno" name="username" maxlength="50" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_password_acessoaluno" class="form-label">Senha</label>
+                                <input type="password" id="id_password_acessoaluno" name="password" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Entrar</button>
+                            </div>
+                        </form>                    
+                                  
+    
+                        <hr class="my-3">
+    
+                        <p class="text-center">Não possui uma conta?</p>
+                        <div class="d-grid">
+                            <a href="{% url 'criar_contaaluno' %}" class="btn btn-secondary">Criar Conta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</main>
 
     
-</body>
+    </body>
 
 </html>
