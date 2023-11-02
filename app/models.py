@@ -18,14 +18,26 @@ class AcessoAlunoManager(BaseUserManager):
 
 class AcessoAluno(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=128)  
-
+    password = models.CharField(max_length=128)
+    is_staff = models.BooleanField(default=False)
+    groups = models.ManyToManyField(Group, blank=True, related_name='acessoaluno_user_set')
+    user_permissions = models.ManyToManyField(Permission, blank=True, related_name='acessoaluno_user_set')
     objects = AcessoAlunoManager()
+
+    def delete(self, using=None, keep_parents=False):
+        # Limpe as chaves estrangeiras manualmente
+        for group in self.groups.all():
+            group.acessoaluno_user_set.remove(self)
+        for permission in self.user_permissions.all():
+            permission.acessoaluno_user_set.remove(self)
+        return super().delete(using=using, keep_parents=keep_parents)
+
 
     USERNAME_FIELD = 'username'
 
     def __str__(self):
         return self.username
+
 
 
 class ContaEscolaManager(BaseUserManager):

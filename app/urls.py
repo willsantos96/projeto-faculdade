@@ -14,5 +14,6 @@ urlpatterns = [
     path('logout/', views.fazer_logout, name='logout'),
 
     path('area_aluno/', views.area_aluno, name='area_aluno'),
+    path('home_aluno/', views.home_aluno, name='home_aluno'),
     path('criar_contaaluno/', views.criar_contaaluno, name='criar_contaaluno'),
 ]
