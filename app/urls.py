@@ -13,7 +13,7 @@ urlpatterns = [
     path('login_escola/', views.login_escola, name='login_escola'),
     path('logout/', views.fazer_logout, name='logout'),
 
-    path('area_aluno/', views.area_aluno, name='area_aluno'),
+    path('login_acesso_aluno/', views.login_acesso_aluno, name='login_acesso_aluno'),
     path('home_aluno/', views.home_aluno, name='home_aluno'),
     path('criar_contaaluno/', views.criar_contaaluno, name='criar_contaaluno'),
 ]

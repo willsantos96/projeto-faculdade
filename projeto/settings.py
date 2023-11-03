@@ -109,6 +109,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 AUTH_USER_MODEL = 'app.ContaEscola'
+AUTH_USER_MODEL = 'app.AcessoAluno'
+
 
 
 

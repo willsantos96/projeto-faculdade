@@ -106,8 +106,8 @@ def excluir_aluno(request, pk):
         aluno.delete()
         return redirect('selecionar_aluno')
     
-def area_aluno(request):
-    return render(request, 'area_aluno.html')
+def login_acesso_aluno(request):
+    return render(request, 'login_acesso_aluno.html')
 
 def home_aluno(request):
     return render(request, 'home_aluno.html')
@@ -119,7 +119,7 @@ def criar_contaaluno(request):
         form = AcessoAlunoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('area_aluno') # Redirecione para uma página de sucesso
+            return redirect('login_acesso_aluno') # Redirecione para uma página de sucesso
     else:
         form = AcessoAlunoForm()
 
@@ -140,14 +140,15 @@ def login_acesso_aluno(request):
 
             if user is not None:
                 login(request, user)
-                # Redirecione para a página de sucesso ou qualquer outra página desejada
+                # Redirecionar para a página desejada após o login bem-sucedido
                 return redirect('home_aluno')
             else:
-                # Autenticação falhou, exiba uma mensagem de erro no template
-                return render(request, 'area_aluno.html', {'form': form, 'error_message': 'Credenciais inválidas'})
+                # Se a autenticação falhar, renderize a página de login com uma mensagem de erro
+                error_message = 'Credenciais inválidas. Por favor, tente novamente.'
+                return render(request, 'login_acesso_aluno.html', {'form': form, 'error_message': error_message})
     else:
         form = AcessoAlunoLoginForm()
 
-    return render(request, 'area_aluno.html', {'form': form})
+    return render(request, 'login_acesso_aluno.html', {'form': form})
 
 
