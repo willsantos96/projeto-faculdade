@@ -8,12 +8,16 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .models import Aluno
 from .models import ContaEscola
-from .forms import AcessoAlunoLoginForm, AcessoAlunoForm
+
+from .models import AcessoAluno
+from .forms import AcessoAlunoLoginForm
+from .forms import AcessoAlunoForm
 
 
 def home (request):
     contaescolas = ContaEscola.objects.all()
-    return render(request, 'home.html', {'contaescolas': contaescolas})
+    alunos = AcessoAluno.objects.all()
+    return render(request, 'home.html', {'contaescolas': contaescolas, 'alunos': alunos})
 
 def formulario (request):
     # Lógica para renderizar a página de validação
@@ -123,6 +127,7 @@ def criar_contaaluno(request):
     return render(request, 'criar_contaaluno.html', context)
 
 
+
 @csrf_protect
 def login_acesso_aluno(request):
     if request.method == 'POST':
@@ -143,7 +148,6 @@ def login_acesso_aluno(request):
     else:
         form = AcessoAlunoLoginForm()
 
-    return render(request, 'home_aluno.html', {'form': form})
-
+    return render(request, 'area_aluno.html', {'form': form})
 
 

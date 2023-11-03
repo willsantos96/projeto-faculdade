@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views  # Importe as funções de visualização da sua aplicação
+from . import views
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 

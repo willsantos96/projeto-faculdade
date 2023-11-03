@@ -40,26 +40,48 @@
                     </div>
                     <div class="card-body">
 
+                        <!--
                         <form method="post">
+                            {% csrf_token %}
                             {% csrf_token %}
                             {% if error_message %}
                             <div class="alert alert-danger">
                                 <strong>Erro:</strong> {{ error_message }}
                             </div>
                             {% endif %}
+                    
                             <div class="mb-3">
-                                <label for="id_username_acessoaluno" class="form-label">Usuário</label>
-                                <input type="text" id="id_username_acessoaluno" name="username" maxlength="50" required>
+                            <label for="{{ form.acesso_aluno_login_username.id_for_label }}">Usuário</label>
+                            {{ form.acesso_aluno_login_username }}
+                            </div>
+                            
+                            <div class="mb-3">
+                            <label for="{{ form.acesso_aluno_password.id_for_label }}">Senha</label>
+                            {{ form.acesso_aluno_password }}
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">Entrar</button>
+                            </div>
+                        </form>
+                        -->
+                        
+                        
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="id_username" class="form-label">Usuário</label>
+                                {{ form.username }}
                             </div>
                             <div class="mb-3">
-                                <label for="id_password_acessoaluno" class="form-label">Senha</label>
-                                <input type="password" id="id_password_acessoaluno" name="password" required>
+                                <label for="id_password" class="form-label">Senha</label>
+                                {{ form.password }}
                             </div>
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">Entrar</button>
                             </div>
-                        </form>                    
-                                  
+                        </form>
+                       
     
                         <hr class="my-3">
     

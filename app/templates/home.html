@@ -56,7 +56,20 @@
             </div>
 
 
-            <div class="setor">Aluno</div>        
+            <div class="setor">
+                {% if user.is_authenticated %}
+                Você está logado como:
+                <hr>
+                <h5>Nome: {{ aluno.username }}</h5>
+                {% else %}
+
+                Alunos cadastrados:
+                <hr>
+                {% for aluno in alunos %}
+                <h5>{{ aluno.username }}</h5>
+                {% endfor %}
+                {% endif %}
+            </div>        
         </main>
 
         
