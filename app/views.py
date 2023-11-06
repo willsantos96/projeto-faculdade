@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import HttpResponse
+from django.contrib.auth import authenticate, login
+from django.views.decorators.csrf import csrf_protect
+
 from .forms import AlunoForm
 from .forms import ContaEscolaForm
-from django.contrib.auth import authenticate, login
 from .forms import LoginForm
-from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import logout
-from django.contrib.auth.decorators import login_required
 from .models import Aluno
 from .models import ContaEscola
 
@@ -64,9 +66,17 @@ def criar_contaescola(request):
     context = {'form': form}
     return render(request, 'form_escola.html', context)
 
+#verifica se o usuario é do grupo "conta escola"
+def grupo_conta_escola(user):
+    return user.groups.filter(name='ContaEscola').exists()
 
 @login_required(login_url='/login_escola/')
 def cadastrar_aluno(request):
+
+    #verifica se nao pertence ao grupo "conta escola"
+    if not grupo_conta_escola(request.user):
+        return HttpResponse("Você não tem permissão para acessar esta página.")
+
     if request.method == 'POST':
         form = AlunoForm(request.POST)
         if form.is_valid():
@@ -104,14 +114,12 @@ def excluir_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
     if request.method == 'POST':
         aluno.delete()
+
         return redirect('selecionar_aluno')
     
-def login_acesso_aluno(request):
-    return render(request, 'login_acesso_aluno.html')
-
+@login_required(login_url='/login_acesso_aluno/')
 def home_aluno(request):
     return render(request, 'home_aluno.html')
-
 
 @csrf_protect
 def criar_contaaluno(request):
@@ -125,7 +133,6 @@ def criar_contaaluno(request):
 
     context = {'form': form}
     return render(request, 'criar_contaaluno.html', context)
-
 
 
 @csrf_protect
