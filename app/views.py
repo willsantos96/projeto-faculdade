@@ -75,7 +75,7 @@ def cadastrar_aluno(request):
 
     # Verificar se o usuário logado é do tipo ContaEscola
     if not isinstance(request.user, ContaEscola):
-        return redirect('home_aluno')
+        return HttpResponse("Você não tem permissão para acessar essa página, Acesse a Área do Aluno.", status=403)
 
     if request.method == 'POST':
         form = AlunoForm(request.POST)
@@ -120,11 +120,10 @@ def excluir_aluno(request, pk):
 @login_required(login_url='/login_acesso_aluno/')
 def home_aluno(request):
     # Verificar se o usuário logado é do tipo AcessoAluno
-    if isinstance(request.user, AcessoAluno):
-        return render(request, 'home_aluno.html')
-    else:
-        # Se o usuário logado for do tipo ContaEscola, redirecionar para outra view
-        return redirect('cadastrar_aluno')  # Substitua 'outra_view_escola' pelo nome da sua outra view para ContaEscola
+    if not isinstance(request.user, AcessoAluno):
+        return HttpResponse("Você não tem permissão para acessar essa página, acesse a Área da Escola", status=403)
+    
+    return render(request, 'home_aluno.html')
 
 @csrf_protect
 def criar_contaaluno(request):
