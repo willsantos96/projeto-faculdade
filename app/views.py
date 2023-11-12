@@ -73,9 +73,9 @@ def grupo_conta_escola(user):
 @login_required(login_url='/login_escola/')
 def cadastrar_aluno(request):
 
-    #verifica se nao pertence ao grupo "conta escola"
-    #if not grupo_conta_escola(request.user):
-        #return HttpResponse("Você não tem permissão para acessar esta página.")
+    # Verificar se o usuário logado é do tipo ContaEscola
+    if not isinstance(request.user, ContaEscola):
+        return redirect('home_aluno')
 
     if request.method == 'POST':
         form = AlunoForm(request.POST)
@@ -119,8 +119,12 @@ def excluir_aluno(request, pk):
     
 @login_required(login_url='/login_acesso_aluno/')
 def home_aluno(request):
-
-    return render(request, 'home_aluno.html')
+    # Verificar se o usuário logado é do tipo AcessoAluno
+    if isinstance(request.user, AcessoAluno):
+        return render(request, 'home_aluno.html')
+    else:
+        # Se o usuário logado for do tipo ContaEscola, redirecionar para outra view
+        return redirect('cadastrar_aluno')  # Substitua 'outra_view_escola' pelo nome da sua outra view para ContaEscola
 
 @csrf_protect
 def criar_contaaluno(request):
@@ -141,6 +145,11 @@ def login_acesso_aluno(request):
 
     if request.user.is_authenticated:
         return redirect('home_aluno')
+    
+    if isinstance(request.user, AcessoAluno):
+            return redirect('home_aluno') 
+    elif isinstance(request.user, ContaEscola):
+            return redirect('cadastrar_aluno') 
 
     if request.method == 'POST':
         form = AcessoAlunoLoginForm(request.POST)
@@ -153,7 +162,12 @@ def login_acesso_aluno(request):
             if user is not None:
                 login(request, user)
                 # Redirecionar para a página desejada após o login bem-sucedido
-                return redirect('home_aluno')
+                if isinstance(user, AcessoAluno):
+                    return redirect('home_aluno')
+                elif isinstance(user, ContaEscola):
+                    return redirect('cadastrar_aluno')
+            
+
             else:
                 # Se a autenticação falhar, renderize a página de login com uma mensagem de erro
                 error_message = 'Credenciais inválidas. Por favor, tente novamente.'
