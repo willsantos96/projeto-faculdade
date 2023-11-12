@@ -66,7 +66,7 @@ def criar_contaescola(request):
     context = {'form': form}
     return render(request, 'form_escola.html', context)
 
-#verifica se o usuario é do grupo "conta escola"
+#chama os usuarios do grupo "conta escola"
 def grupo_conta_escola(user):
     return user.groups.filter(name='ContaEscola').exists()
 
@@ -74,8 +74,8 @@ def grupo_conta_escola(user):
 def cadastrar_aluno(request):
 
     #verifica se nao pertence ao grupo "conta escola"
-    if not grupo_conta_escola(request.user):
-        return HttpResponse("Você não tem permissão para acessar esta página.")
+    #if not grupo_conta_escola(request.user):
+        #return HttpResponse("Você não tem permissão para acessar esta página.")
 
     if request.method == 'POST':
         form = AlunoForm(request.POST)
@@ -119,6 +119,7 @@ def excluir_aluno(request, pk):
     
 @login_required(login_url='/login_acesso_aluno/')
 def home_aluno(request):
+
     return render(request, 'home_aluno.html')
 
 @csrf_protect
@@ -137,6 +138,10 @@ def criar_contaaluno(request):
 
 @csrf_protect
 def login_acesso_aluno(request):
+
+    if request.user.is_authenticated:
+        return redirect('home_aluno')
+
     if request.method == 'POST':
         form = AcessoAlunoLoginForm(request.POST)
         if form.is_valid():

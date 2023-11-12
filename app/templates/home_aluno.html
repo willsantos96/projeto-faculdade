@@ -1,13 +1,107 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
+
+    <!-- código para usar o css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- código para exportar bootstrap -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}"> 
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+    
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Aluno</title>
-</head>
-<body>
 
-    <h1>Home Aluno</h1>
+    <title>Consulta</title>
+</head>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Logo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">[ Home ]<span class="sr-only">(current)</span></a>
+        </li>        
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'selecionar_aluno' %}">[ Lista de alunos ]</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">[ Logout ]</a>
+      </ul>
+    </div>
+  </nav>
+  
+
+<body class="homeBody">
+
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card border-0 shadow-lg rounded-lg">
+                <div class="card-header bg-gradient-primary text-white text-center py-3">
+                    <h1 class="m-0 dark-heading">Preencha para consultar o direito ao cartão</h1>
+                </div>
+                <div class="card-body bg-light rounded-bottom">
+
+                    <form>
+                        <div class="mb-3">
+                          <label for="escola" class="form-label">Escola</label>
+                          <input type="text" class="form-control" id="escola" name="escola" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="nome" class="form-label">Nome</label>
+                          <input type="text" class="form-control" id="nome" name="nome" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Email</label>
+                          <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="senha" class="form-label">Senha</label>
+                          <input type="password" class="form-control" id="senha" name="senha" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="sexo" class="form-label">Sexo</label>
+                          <select class="form-select" id="sexo" name="sexo" required>
+                            <option value="" disabled selected>Selecione...</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outro">Outro</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label for="endereco" class="form-label">Endereço</label>
+                          <textarea class="form-control" id="endereco" name="endereco" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                      </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <br>
+    <a href="{% url 'home' %}">Página inicial</a>
+
     
 </body>
+
+
+
 </html>
