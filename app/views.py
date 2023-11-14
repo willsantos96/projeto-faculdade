@@ -175,5 +175,3 @@ def login_acesso_aluno(request):
         form = AcessoAlunoLoginForm()
 
     return render(request, 'login_acesso_aluno.html', {'form': form})
-
-

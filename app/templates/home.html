@@ -40,6 +40,17 @@
 
         <main class="content">
 
+
+
+            {% if tipo_usuario %}
+                  <p>Você está logado como {{ tipo_usuario }}</p>
+                {% else %}
+                  <p>Você não está autenticado.</p>
+                {% endif %} 
+
+
+
+
             <div class="setor">
                 {% if user.is_authenticated %}
                 Você está logado como:
