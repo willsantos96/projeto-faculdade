@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <!-- código para importar o css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+        <!-- Descomente esse código para usar bootstrap -->
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>{{ title }}</title>
+    </head>
+
+    <body class="homeBody">
+        {% include 'base/navbar.html' %}
+
+        <main class="content">
+            {% block body%} {% endblock %}
+        </main>
+
+        
+
+        <footer>Copyright</footer>
+    </body>
+</html>

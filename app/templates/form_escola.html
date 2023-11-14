@@ -1,25 +1,7 @@
-{% load static %}
+{% extends 'base/layout.html'  %} {% load static %}
+{% block body %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <!-- código para importar o css -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-
-    <!-- Descomente esse código para usar bootstrap -->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Criar Conta</title>
-</head>
-
-<body class="homeBody">
-
-  <header>
+<header>
     <nav class="navbar">
         <img class="logo" src="" alt="Logo" />
 
@@ -30,43 +12,40 @@
     </nav>
 </header>
 
-  <div class="container">
-      <div class="row justify-content-center mt-5">
-          <div class="col-md-6">
-              <div class="card">
-                  <div class="card-header">
-                      <h2 class="text-center dark-heading">Criar conta da escola</h2>
-                  </div>
-                  <div class="card-body">
-                      <form method="post">
-                          {% csrf_token %}
-                          {{ form.non_field_errors }}
-                          <div class="mb-3">
-                              <label for="{{ form.username.id_for_label }}" class="form-label">Usuário</label>
-                              {{ form.username }}
-                          </div>
-                          <div class="mb-3">
-                              <label for="{{ form.password.id_for_label }}" class="form-label">Senha</label>
-                              {{ form.password }}
-                          </div>
-                          <div class="d-grid">
-                              <button type="submit" class="btn btn-primary">Criar Conta</button>
-                          </div>
-                      </form>
-  
-                      <hr class="my-3">
-  
-                      <p class="text-center">Já possui uma conta?</p>
-                      <div class="d-grid">
-                          <a href="{% url 'login_escola' %}" class="btn btn-secondary">Entrar</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
-  
-  
-  </body>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center dark-heading">Criar conta da escola</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div class="mb-3">
+                            <label for="{{ form.username.id_for_label }}" class="form-label">Usuário</label>
+                            {{ form.username }}
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.password.id_for_label }}" class="form-label">Senha</label>
+                            {{ form.password }}
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Criar Conta</button>
+                        </div>
+                    </form>
 
-</html>
+                    <hr class="my-3">
+
+                    <p class="text-center">Já possui uma conta?</p>
+                    <div class="d-grid">
+                        <a href="{% url 'login_escola' %}" class="btn btn-secondary">Entrar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
+{% endblock %}

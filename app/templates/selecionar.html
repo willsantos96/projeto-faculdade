@@ -1,33 +1,10 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-
-    <!-- código para exportar o css -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <!-- Descomente esse código para usar bootstrap -->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Lista de Clientes</title>
-</head>
+{% extends 'base/layout.html'  %} {% load static %}
+{% block body %}
+<h1>Selecione um Cliente para Editar</h1>
 
 
 
-<body>
-
-  <h1>Selecione um Cliente para Editar</h1>
-
-
-
-  {% for aluno in alunos %}
+{% for aluno in alunos %}
   <h5>Nome: {{ aluno.nome }}</h5>
   <h5>Email: {{ aluno.email }}<h5>
   <h5>Sexo: {{ aluno.sexo }}<h5>
@@ -40,20 +17,15 @@
     <button type="submit" class="btn btn-primary btn-sm">Editar</button>
   </form>
 
-    <form method="post" action="{% url 'excluir_aluno' aluno.id %}" style="display: inline;">
-      {% csrf_token %}
-      <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-    </form>
-    <hr>
+  <form method="post" action="{% url 'excluir_aluno' aluno.id %}" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+  </form>
+  <hr>
 
   <hr>
 {% endfor %}
 
-    <a href="{% url 'home' %}">Página inicial</a>
+<a href="{% url 'home' %}">Página inicial</a>
 
-
-</body>
-
-
-
-</html>
+{% endblock %}
