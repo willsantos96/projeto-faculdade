@@ -1,25 +1,7 @@
-{% load static %}
+{% extends 'base/layout.html'  %} {% load static %}
+{% block body %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <!-- código para importar o css -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-
-    <!-- Descomente esse código para usar bootstrap -->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Criar Conta</title>
-</head>
-
-<body class="homeBody">
-
-  <header>
+<header>
     <nav class="navbar">
         <img class="logo" src="" alt="Logo" />
 
@@ -66,7 +48,4 @@
       </div>
   </div>
   
-  
-  </body>
-
-</html>
+{% endblock %}

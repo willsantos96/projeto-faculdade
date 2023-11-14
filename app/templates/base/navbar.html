@@ -1,0 +1,58 @@
+<header>
+    <nav class="navbar">
+        
+        <a class="nav-link" href="{% url 'home' %}">
+            <img class="logo" src="" alt="Logo" />
+        </a>
+          
+        {% if tipo_usuario %}
+            <p>Você está logado como {{ tipo_usuario }}</p>
+        {% else %}
+            <p>Você não está autenticado.</p>
+        {% endif %} 
+                
+                
+        <ul class="nav-items">
+            {% if user.is_authenticated %} 
+                {% if tipo_usuario == 'Escola' %}
+                    <li class="nav-item">
+                        <a href="{% url 'cadastrar_aluno' %}">Escola</a>
+                    </li>
+                {% endif %} 
+                {% if tipo_usuario == 'Aluno' %}
+                    <li class="nav-item">
+                        <a href="{% url 'login_acesso_aluno' %}">Aluno</a>
+                    </li>
+                        
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'selecionar_aluno' %}">Lista de alunos</a>
+                    </li>
+                {% endif %} 
+                <li class="nav-item">
+                    <a href="#">Instruções</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Dúvidas Frequentes</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+            {% else %} 
+                <li class="nav-item">
+                    <a href="{% url 'cadastrar_aluno' %}">Escola</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'login_acesso_aluno' %}">Aluno</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Instruções</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#">Dúvidas Frequentes</a>
+                </li>
+            {% endif %}
+
+        </ul>   
+    </nav>
+</header>

@@ -1,25 +1,5 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-
-    <!-- código para usar o css -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <!-- código para exportar bootstrap -->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}"> 
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-
-    
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Adicionar Aluno</title>
-</head>
+{% extends 'base/layout.html'  %} {% load static %}
+{% block body %}
 
 
 
@@ -42,10 +22,6 @@
     </div>
   </nav>
   
-
-<body class="homeBody">
-
-
   <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-10">
@@ -215,8 +191,4 @@
     <a href="{% url 'home' %}">Página inicial</a>
 
     
-</body>
-
-
-
-</html>
+{% endblock %}

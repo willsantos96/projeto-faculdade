@@ -1,55 +1,5 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="pt-br">
-    <head>
-        <!-- código para importar o css -->
-        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-
-        <!-- Descomente esse código para usar bootstrap -->
-        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
-        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        <title>Página inicial</title>
-    </head>
-
-    <body class="homeBody">
-        <header>
-            <nav class="navbar">
-                <img class="logo" src="" alt="Logo" />
-
-                <ul class="nav-items">
-                    <li class="nav-item">
-                        <a href="{% url 'cadastrar_aluno' %}">Escola</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{% url 'login_acesso_aluno' %}">Aluno</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Instruções</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#">Dúvidas</a>
-                    </li>
-                </ul>   
-            </nav>
-        </header>
-
-        <main class="content">
-
-
-
-            {% if tipo_usuario %}
-                  <p>Você está logado como {{ tipo_usuario }}</p>
-                {% else %}
-                  <p>Você não está autenticado.</p>
-                {% endif %} 
-
-
-
+{% extends 'base/layout.html'  %} {% load static %}
+{% block body %}
 
             <div class="setor">
                 {% if user.is_authenticated %}
@@ -81,10 +31,5 @@
                 {% endfor %}
                 {% endif %}
             </div>        
-        </main>
-
-        
-
-        <footer>Copyright</footer>
-    </body>
-</html>
+            
+{% endblock %}

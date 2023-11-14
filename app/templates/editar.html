@@ -1,27 +1,5 @@
-{% load static %}
-
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-
-    <!-- código para exportar o css -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
-    <!-- Descomente esse código para usar bootstrap -->
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
-
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Editar Cliente</title>
-</head>
-
-
-
-<body>
+{% extends 'base/layout.html'  %} {% load static %}
+{% block body %}
 
   <form method="post">
     {% csrf_token %}
@@ -34,8 +12,4 @@
   <a href="{% url 'home' %}">Página inicial</a>
 
 
-</body>
-
-
-
-</html>
+{% endblock %}

@@ -17,9 +17,13 @@ from .forms import AcessoAlunoForm
 
 
 def home (request):
-    contaescolas = ContaEscola.objects.all()
-    alunos = AcessoAluno.objects.all()
-    return render(request, 'home.html', {'contaescolas': contaescolas, 'alunos': alunos})
+
+    context = {
+        'contaescolas': ContaEscola.objects.all(),
+        'alunos': AcessoAluno.objects.all(),
+        'title': 'Página Inicial'
+    }
+    return render(request, 'home.html', context)
 
 def formulario (request):
     # Lógica para renderizar a página de validação
@@ -45,7 +49,12 @@ def login_escola(request):
     else:
         form = LoginForm()
 
-    return render(request, 'login_escola.html', {'form': form})
+    context = {
+        'form': form,
+        'title': 'Login Escola',
+    }
+
+    return render(request, 'login_escola.html', context)
 
 
 def fazer_logout(request):
@@ -63,7 +72,10 @@ def criar_contaescola(request):
     else:
         form = ContaEscolaForm()
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        'title': 'Criar Conta'
+    }
     return render(request, 'form_escola.html', context)
 
 #chama os usuarios do grupo "conta escola"
@@ -85,12 +97,18 @@ def cadastrar_aluno(request):
     else:
         form = AlunoForm()
     
-    context = {'form': form}
+    context = {
+        'form': form,
+        'title': 'Adicionar Aluno'
+    }
     return render(request, 'adicionar.html', context)
 
 def selecionar_aluno(request):
-    alunos = Aluno.objects.all()
-    return render(request, 'selecionar.html', {'alunos': alunos})
+    context = {
+        'alunos': Aluno.objects.all(),
+        'title': 'Lista de Alunos'
+    }
+    return render(request, 'selecionar.html', context)
 
 
 def editar_aluno(request, pk):
@@ -103,12 +121,11 @@ def editar_aluno(request, pk):
             return redirect('selecionar_cliente')  # Redirecione para uma página de sucesso
     else:
         form = AlunoForm(instance=aluno)
-    
-    return render(request, 'editar.html', {'form': form})
-
-def selecionar_aluno(request):
-    alunos = Aluno.objects.all()
-    return render(request, 'selecionar.html', {'alunos': alunos})
+    context = {
+        'form': form,
+        'title': 'Editar Aluno'
+    }
+    return render(request, 'editar.html', context)
 
 def excluir_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
@@ -123,6 +140,9 @@ def home_aluno(request):
     if not isinstance(request.user, AcessoAluno):
         return HttpResponse("Você não tem permissão para acessar essa página, acesse a Área da Escola", status=403)
     
+    context = {
+        'title': 'Home Aluno',
+    }
     return render(request, 'home_aluno.html')
 
 @csrf_protect
@@ -135,7 +155,10 @@ def criar_contaaluno(request):
     else:
         form = AcessoAlunoForm()
 
-    context = {'form': form}
+    context = {
+        'form': form,
+        'title': 'Criar Conta'
+    }
     return render(request, 'criar_contaaluno.html', context)
 
 
@@ -174,4 +197,10 @@ def login_acesso_aluno(request):
     else:
         form = AcessoAlunoLoginForm()
 
-    return render(request, 'login_acesso_aluno.html', {'form': form})
+    context = {
+        'form': form,
+        'title': 'Login Aluno'
+    }
+    return render(request, 'login_acesso_aluno.html', context)
+
+
