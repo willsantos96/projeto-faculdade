@@ -59,7 +59,7 @@ def login_escola(request):
 
 def fazer_logout(request):
     logout(request)
-    return redirect('login_escola')
+    return redirect('home')
 
     
 @csrf_protect
