@@ -1,0 +1,81 @@
+{% extends 'base/layout.html'  %} {% load static %}
+{% block body %}
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1>
+                Manual de Instruções - Sistema SIC
+            </h1>
+            <p>
+                Bem-vindo ao Sistema SIC, uma plataforma dedicada à troca eficiente de informações entre escolas e o serviço de transporte público. Este manual fornecerá orientações passo a passo para escolas e alunos utilizarem o sistema com facilidade.
+            </p>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-12">1. Registro no Sistema:</dt>
+
+                <dt class="col-sm-2">1.1 Escola:</dt>
+                <dd class="col-sm-12">
+                    <p>
+                        Acesse o site do Sistema GVBUS.
+                        Clique em "Registrar" e preencha as informações necessárias.
+                        Após o registro, você receberá credenciais de login.
+                    </p>
+                </dd>
+                <dt class="col-sm-2">1.2 Aluno:</dt>
+                <dd class="col-sm-12">
+                    <p>
+                        Acesse o site do Sistema GVBUS.
+                        Selecione "Cadastro de Aluno" e preencha o formulário com os dados solicitados.
+                        Após o registro, você receberá credenciais de login.
+                    </p>
+                </dd>
+                <dt class="col-sm-12">2. Troca de Informações:</dt>
+                <dt class="col-sm-2">2.1 Escola:</dt>
+                <dd class="col-sm-12">
+                    <p>
+                        Faça login usando suas credenciais.
+                        Complete o formulário online fornecendo os dados dos alunos para a validação do cartão de transporte.
+                        O Sistema GVBUS verificará a consistência dos dados e aprovará a liberação do cartão.
+                    </p>
+                </dd>
+                <dt class="col-sm-2">2.2 Aluno:</dt>
+                <dd class="col-sm-12">
+                    <p>
+                        Faça login usando suas credenciais.
+                        Preencha o formulário de solicitação do cartão de transporte com seus dados pessoais.
+                        Após a submissão, aguarde a aprovação do sistema.
+                    </p>
+                </dd>
+                <dt class="col-sm-12">3. Segurança e Privacidade:</dt>
+                <dd class="col-sm-12">
+                    <p>
+                        O Sistema GVBUS prioriza a segurança e privacidade dos dados.
+                        As informações fornecidas são comparadas para garantir a precisão antes da aprovação do cartão.
+                        Dados pessoais são tratados com confidencialidade, seguindo as diretrizes de segurança.
+                    </p>
+                </dd>
+                <dt class="col-sm-12">4. Busca e Liberação de Linhas de Transporte:</dt>
+                <dd class="col-sm-12">
+                    <p>
+                        Após a aprovação, o sistema realizará automaticamente uma busca na GVBUS para liberar as linhas de transporte adequadas com base no endereço informado pela escola e pelo aluno.
+                    </p>
+                </dd>
+                <dt class="col-sm-12">5. Suporte Técnico:</dt>
+                <dd class="col-sm-12">
+                    <p>
+                        Para quaisquer dúvidas, em nossa aba <a href="{% url 'faq' %}">dúvidas</a>  temos um F.A.Q com as possiveis dúvidas.
+                    </p>
+                </dd>
+            </dl>
+                Lembre-se, o Sistema SIC está aqui para simplificar o processo de aprovação de cartões de transporte para os alunos. Siga estas instruções para garantir uma experiência eficiente e sem complicações.
+                
+                Obrigado por utilizar o Sistema SIC!
+        </div>
+    </div>
+    
+</div>
+
+{% endblock %}

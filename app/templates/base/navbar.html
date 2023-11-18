@@ -18,23 +18,16 @@
                     <li class="nav-item">
                         <a href="{% url 'cadastrar_aluno' %}">Escola</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'selecionar_aluno' %}">Lista de alunos</a>
+                    </li>
                 {% endif %} 
                 {% if tipo_usuario == 'Aluno' %}
                     <li class="nav-item">
                         <a href="{% url 'login_acesso_aluno' %}">Aluno</a>
                     </li>
                         
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'selecionar_aluno' %}">Lista de alunos</a>
-                    </li>
-                {% endif %} 
-                <li class="nav-item">
-                    <a href="#">Instruções</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Dúvidas Frequentes</a>
-                </li>
-                
+                {% endif %}                 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                 </li>
@@ -45,13 +38,13 @@
                 <li class="nav-item">
                     <a href="{% url 'login_acesso_aluno' %}">Aluno</a>
                 </li>
-                <li class="nav-item">
-                    <a href="#">Instruções</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#">Dúvidas Frequentes</a>
-                </li>
             {% endif %}
+            <li class="nav-item">
+                <a href="{% url 'instrucoes' %}">Instruções</a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'faq' %}">Dúvidas Frequentes</a>
+            </li>
 
         </ul>   
     </nav>

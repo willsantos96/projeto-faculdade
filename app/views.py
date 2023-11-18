@@ -29,6 +29,18 @@ def formulario (request):
     # Lógica para renderizar a página de validação
     return render(request, 'formulario.html')
 
+def instrucoes (request):
+    context = {
+        'title': 'Instruções de Uso'
+    }
+    return render (request, 'instrucoes.html')
+
+def duvidasFrequentes (request):
+    context = {
+        'title': 'Dúvidas Frequentes'
+    }
+    return render (request, 'faq.html')
+
 @csrf_protect
 def login_escola(request):
     if request.method == 'POST':
