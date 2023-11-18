@@ -16,4 +16,6 @@ urlpatterns = [
     path('login_acesso_aluno/', views.login_acesso_aluno, name='login_acesso_aluno'),
     path('home_aluno/', views.home_aluno, name='home_aluno'),
     path('criar_contaaluno/', views.criar_contaaluno, name='criar_contaaluno'),
+    path('instrucoes/', views.instrucoes, name='instrucoes'),
+    path('duvidas_frequentes/', views.duvidasFrequentes, name='faq'),
 ]
