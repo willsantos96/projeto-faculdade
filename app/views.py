@@ -154,7 +154,6 @@ def home_aluno(request):
         return HttpResponse("Você não tem permissão para acessar essa página, acesse a Área da Escola", status=403)
 
     alunoCadastrado = list(Aluno.objects.filter(cpf=request.user.cpf))
-    # alunoCadastrado = list(Aluno.objects.filter(cpf='01915558000'))
     registrado = len(alunoCadastrado)
     distancia = 0
     endereco_aluno = ""
