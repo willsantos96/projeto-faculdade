@@ -6,7 +6,7 @@
         </a>
           
         {% if tipo_usuario %}
-            <p>Você está logado como {{ tipo_usuario }}</p>
+            <p class="fw-bold">Bem vindo, <span class="fw-bold">{{ user.username }}</span></p>
         {% else %}
             <p>Você não está autenticado.</p>
         {% endif %} 

@@ -15,6 +15,7 @@ from .models import AcessoAluno
 from .forms import AcessoAlunoLoginForm
 from .forms import AcessoAlunoForm
 
+import googlemaps
 
 def home (request):
 
@@ -102,7 +103,7 @@ def cadastrar_aluno(request):
         return HttpResponse("Você não tem permissão para acessar essa página, Acesse a Área do Aluno.", status=403)
 
     if request.method == 'POST':
-        form = AlunoForm(request.POST)
+        form = AlunoForm(data=request.POST, codigo_escola=request.user.id)
         if form.is_valid():
             form.save()
             return redirect('selecionar_aluno') # Redirecione para uma página de sucesso
@@ -151,11 +152,45 @@ def home_aluno(request):
     # Verificar se o usuário logado é do tipo AcessoAluno
     if not isinstance(request.user, AcessoAluno):
         return HttpResponse("Você não tem permissão para acessar essa página, acesse a Área da Escola", status=403)
-    
+
+    alunoCadastrado = list(Aluno.objects.filter(cpf=request.user.cpf))
+    registrado = len(alunoCadastrado)
+    distancia = 0
+    endereco_aluno = ""
+    endereco_escola = ""
+    if registrado == 0:
+        statusCartao = 'Pendente'
+        cadastradoEscola = 'Não'
+        
+    else:
+        cadastradoEscola = 'Sim'
+        gmaps = googlemaps.Client(key='AIzaSyAIILmC97tRUkncOmt0QE9Fpu6KPDEHEtU')
+        aluno = Aluno.objects.get(cpf=request.user.cpf)
+        escola = ContaEscola.objects.get(id=aluno.codigo_escola)
+
+        endereco_aluno = montarEnderecoGoogleMaps(aluno.endereco, aluno.numero, aluno.bairro, aluno.cidade, aluno.uf)
+        endereco_escola = montarEnderecoGoogleMaps(escola.endereco, escola.numero, escola.bairro, escola.cidade, escola.uf)
+        result = gmaps.distance_matrix(endereco_aluno, endereco_escola)
+
+        distancia = result['rows'][0]['elements'][0]['distance']['value']
+        if distancia > 1500:
+            statusCartao = "Aprovado"
+        else:
+            statusCartao = "Reprovado"
+        
     context = {
         'title': 'Home Aluno',
+        'statusCartao': statusCartao,
+        'cadastradoEscola': cadastradoEscola,
+        'distancia': "{0:,}m".format(distancia).replace(',','.'),
+        'end1': endereco_aluno,
+        'end2': endereco_escola
     }
-    return render(request, 'home_aluno.html')
+    
+    return render(request, 'home_aluno.html', context)
+
+def montarEnderecoGoogleMaps(endereco, numero, bairro, cidade, uf):
+    return f"{endereco}, {numero}, {bairro}, {cidade}, {uf}"
 
 @csrf_protect
 def criar_contaaluno(request):
@@ -213,6 +248,7 @@ def login_acesso_aluno(request):
         'form': form,
         'title': 'Login Aluno'
     }
+
     return render(request, 'login_acesso_aluno.html', context)
 
 

@@ -3,47 +3,40 @@
  
   <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="w-75">
             <div class="card border-0 shadow-lg rounded-lg">
                 <div class="card-header bg-gradient-primary text-white text-center py-3">
-                    <h1 class="m-0 dark-heading">Preencha para consultar o direito ao cartão</h1>
+                    <h1 class="m-0 dark-heading">{{ user.username }}</h1>
                 </div>
                 <div class="card-body bg-light rounded-bottom">
-
-
-                    <form>
-                        <div class="mb-3">
-                          <label for="escola" class="form-label">Escola</label>
-                          <input type="text" class="form-control" id="escola" name="escola" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="nome" class="form-label">Nome</label>
-                          <input type="text" class="form-control" id="nome" name="nome" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="email" class="form-label">Email</label>
-                          <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="senha" class="form-label">Senha</label>
-                          <input type="password" class="form-control" id="senha" name="senha" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="sexo" class="form-label">Sexo</label>
-                          <select class="form-select" id="sexo" name="sexo" required>
-                            <option value="" disabled selected>Selecione...</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
-                            <option value="outro">Outro</option>
-                          </select>
-                        </div>
-                        <div class="mb-3">
-                          <label for="endereco" class="form-label">Endereço</label>
-                          <textarea class="form-control" id="endereco" name="endereco" rows="3" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                      </form>
-
+                    <div class="d-flex justify-content-left align-items-center mb-1">
+                        <span class="input-group-text col-md-4" id="inputGroup-sizing">E-mail</span>
+                        <span class="ml-3">{{ user.email }}</span>
+                    </div>
+                    <div class="d-flex justify-content-left align-items-center mb-1">
+                        <span class="input-group-text col-md-4" id="inputGroup-sizing">CPF</span>
+                        <span class="ml-3">{{ user.cpf }}</span>
+                    </div>
+                    <div class="d-flex justify-content-left align-items-center mb-1">
+                        <span class="input-group-text col-md-4" id="inputGroup-sizing">Cadastrado na Escola</span>
+                        <span class="ml-3">{{ cadastradoEscola }}</span>
+                    </div>
+                    <div class="d-flex justify-content-left align-items-center mb-1">
+                        <span class="input-group-text col-md-4" id="inputGroup-sizing">Status Cartão</span>
+                        <span class="ml-3">{{ statusCartao }}</span>
+                    </div>
+                    <div class="d-flex justify-content-left align-items-center mb-1">
+                        <span class="input-group-text col-md-4" id="inputGroup-sizing">Distância até Escola</span>
+                        <span class="ml-3">{{ distancia }}</span>
+                    </div>
+                    <div class="d-flex justify-content-left align-items-center mb-1">
+                        <span class="input-group-text col-md-4" id="inputGroup-sizing">Endereço Cadastrado</span>
+                        <span class="ml-3">{{ end1 }}</span>
+                    </div>
+                    <div class="d-flex justify-content-left align-items-center mb-1">
+                        <span class="input-group-text col-md-4" id="inputGroup-sizing">Endereço da Escola</span>
+                        <span class="ml-3">{{ end2 }}</span>
+                    </div>
                 </div>
             </div>
         </div>
