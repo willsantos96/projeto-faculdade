@@ -2,30 +2,16 @@
 {% block body %}
 
             <div class="setor">
-                {% if user.is_authenticated %}
-                Você está logado como:
-                <hr>
-                <h5>Nome: {{ user.username }}</h5>
-                {% else %}
-
                 Escolas cadastradas:
                 <hr>
                 <p>Além dos alunos, as escolas e instituições de ensino superior devem registrar-se no GVBus para garantir que seus estudantes possam desfrutar dos benefícios oferecidos. O processo de cadastro é descomplicado e conveniente, realizado de maneira fácil através da opção "escola" na barra de menu desta plataforma.</p>
-                {% endif %}
             </div>
 
 
             <div class="setor">
-                {% if user.is_authenticated %}
-                Você está logado como:
-                <hr>
-                <h5>Nome: {{ aluno.username }}</h5>
-                {% else %}
-
                 Alunos cadastrados:
                 <hr>
                 <p>Para realizar o cadastro, aqueles que ainda não o possuem devem acessar a opção "aluno" na barra de menu de cadastro/recadastro de estudantes. Em seguida, é necessário escolher a categoria correspondente, preencher o formulário aguardar a analise do seus dados.</p>
-                {% endif %}
             </div>        
             
 {% endblock %}

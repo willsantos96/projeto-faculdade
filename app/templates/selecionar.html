@@ -1,31 +1,28 @@
 {% extends 'base/layout.html'  %} {% load static %}
 {% block body %}
-<h1>Selecione um aluno para Editar</h1>
 
-
-
-{% for aluno in alunos %}
-  <h5>Nome: {{ aluno.nome }}</h5>
-  <h5>Email: {{ aluno.email }}<h5>
-  <h5>Sexo: {{ aluno.sexo }}<h5>
-  <h5>Data de nascimento: {{ aluno.data_nascimento }}<h5>
-  <h5>CPF: {{ aluno.cpf }}<h5>
-  <h5>Telefone: {{ aluno.telefone }}<h5>
-
-  <form method="" action="{% url 'editar_aluno' aluno.id %}" style="display: inline;">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-primary btn-sm">Editar</button>
-  </form>
-
-  <form method="post" action="{% url 'excluir_aluno' aluno.id %}" style="display: inline;">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-  </form>
-  <hr>
-
-  <hr>
-{% endfor %}
-
-<a href="{% url 'home' %}">Página inicial</a>
+<div class="container">
+  <h1>Selecione um aluno para Editar</h1>
+  
+  {% for aluno in alunos %}
+    <h5>Nome: {{ aluno.nome }}</h5>
+    <h5>Email: {{ aluno.email }}<h5>
+    <h5>Sexo: {{ aluno.sexo }}<h5>
+    <h5>Data de nascimento: {{ aluno.data_nascimento }}<h5>
+    <h5>CPF: {{ aluno.cpf }}<h5>
+    <h5>Telefone: {{ aluno.telefone }}<h5>
+  
+    <form method="" action="{% url 'editar_aluno' aluno.id %}" style="display: inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary btn-sm">Editar</button>
+    </form>
+  
+    <form method="post" action="{% url 'excluir_aluno' aluno.id %}" style="display: inline;">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+    </form>
+    <hr>
+  {% endfor %}
+</div>
 
 {% endblock %}

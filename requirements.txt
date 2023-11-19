@@ -4,3 +4,4 @@ Django==4.2.4
 django-bootstrap4==23.2
 soupsieve==2.4.1
 sqlparse==0.4.4
+googlemaps==4.2.0

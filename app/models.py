@@ -19,6 +19,9 @@ class AcessoAlunoManager(BaseUserManager):
 class AcessoAluno(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=128)
+    email = models.EmailField(unique=True)
+    cpf = models.CharField(max_length=11, unique=True)  # Pode ser ajustado para usar um campo de CPF personalizado
+
 
     is_staff = models.BooleanField(default=False)
     groups = models.ManyToManyField(Group, blank=True, related_name='acessoaluno_user_set')
@@ -50,7 +53,14 @@ class ContaEscolaManager(BaseUserManager):
 
 class ContaEscola(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=50, unique=True)
-    password = models.CharField(max_length=128) 
+    password = models.CharField(max_length=128)
+    endereco = models.CharField(max_length=255, blank=True)
+    numero = models.CharField(max_length=20, blank=True)
+    complemento = models.CharField(max_length=100, blank=True)
+    bairro = models.CharField(max_length=100, blank=True)
+    cidade = models.CharField(max_length=100, blank=True)
+    cep = models.CharField(max_length=10, blank=True)
+    uf = models.CharField(max_length=2, blank=True) 
 
     # Adicione related_name para evitar conflitos
     groups = models.ManyToManyField(Group, blank=True, related_name='contaescola_user_set')

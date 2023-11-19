@@ -10,13 +10,35 @@ class AlunoForm(forms.ModelForm):
         model = Aluno
         fields = '__all__'
 
+    def __init__(self, **kwargs):
+        self.codigo_escola = kwargs.pop('codigo_escola', None)
+        super(AlunoForm, self).__init__(**kwargs)
+
+    def save(self, commit=True):
+        obj = super(AlunoForm, self).save(commit=False)
+        obj.codigo_escola = self.codigo_escola
+        if commit:
+            obj.save()
+        return obj
+
+
 
 #--------------------------------------------------------#
 
 class ContaEscolaForm(forms.ModelForm):
     class Meta:
         model = ContaEscola
-        fields = ['username', 'password']
+        fields = [
+            'username', 
+            'password', 
+            'endereco', 
+            'numero', 
+            'complemento',
+            'bairro',
+            'cidade',
+            'cep',
+            'uf'
+        ]
         widgets = {
             'password': forms.PasswordInput()
         }
@@ -37,7 +59,7 @@ class LoginForm(forms.Form):
 class AcessoAlunoForm(forms.ModelForm):
     class Meta:
         model = AcessoAluno
-        fields = ['username', 'password']
+        fields = ['username', 'password', 'cpf', 'email']
         widgets = {
             'password': forms.PasswordInput()
         }
